@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/nav_topMenu" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/r_103"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/r_104"
+            android:title="Notification" />
+        <item
+            android:id="@+id/nav_closefriend"
+            android:icon="@drawable/r_105"
+            android:title="Close Friend" />
+        <item
+            android:id="@+id/nav_fans"
+            android:icon="@drawable/r_106"
+            android:title="Fans" />
+    </group>
+
+    <group android:id="@+id/nav_midMenu" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_bookmarks"
+            android:icon="@drawable/r_107"
+            android:title="Bookmarks" />
+        <item
+            android:id="@+id/nav_recentview"
+            android:icon="@drawable/r_108"
+            android:title="Recently View" />
+    </group>
+
+    <group android:id="@+id/nav_botMenu" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/r_109"
+            android:title="Setting" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/r_110"
+            android:title="About" />
+
+        <item
+            android:id="@+id/nav_signout"
+            android:icon="@drawable/r_111"
+            android:title="Sign Out" />
+    </group>
+
+</menu>
