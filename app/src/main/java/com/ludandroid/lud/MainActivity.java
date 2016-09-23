@@ -1,8 +1,15 @@
 package com.ludandroid.lud;
 
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.util.DebugUtils;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -39,6 +46,35 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.appBar_main_view).findViewById(R.id.appBar_layout).findViewById(R.id.toolbar_tabs);
+
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.r_44a).setText("Home"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.r_46).setText("Profile"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        //TODO : re-code this
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.appBar_main_view).findViewById(R.id.main_viewPager);
+        final ViewPagerAdapter adapter = new ViewPagerAdapter (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
     }
 
     @Override
