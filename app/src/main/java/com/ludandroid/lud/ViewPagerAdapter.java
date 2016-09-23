@@ -22,10 +22,10 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                HomeFragment tab1 = new HomeFragment();
+                TimelineFragment tab1 = new TimelineFragment();
                 return tab1;
             case 1:
-                HomeFragment tab2 = new HomeFragment();
+                TimelineFragment tab2 = new TimelineFragment();
                 return tab2;
             default:
                 return null;

@@ -24,6 +24,8 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    FragmentManager fm = getSupportFragmentManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,33 +49,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.appBar_main_view).findViewById(R.id.appBar_layout).findViewById(R.id.toolbar_tabs);
-
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.r_44a).setText("Home"));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.r_46).setText("Profile"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        //TODO : re-code this
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.appBar_main_view).findViewById(R.id.main_viewPager);
-        final ViewPagerAdapter adapter = new ViewPagerAdapter (getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
     }
 
@@ -94,7 +69,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-
+            fm.beginTransaction().replace(R.id.main_fragmentContainer,new HomeFragment()).commit();
         } else if (id == R.id.nav_notification) {
 
         } else if (id == R.id.nav_closefriend) {
