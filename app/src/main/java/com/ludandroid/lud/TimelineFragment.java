@@ -72,6 +72,12 @@ public class TimelineFragment extends Fragment {
         @Override
         public void onBindViewHolder(TimeLineViewHolder holder, int position) {
             holder.mTextView.setText(stringArrayList.get(position));
+            if (position == 1) {
+                holder.mTimelineView.setMarker(getResources().getDrawable(R.drawable.ic_menu_gallery));
+            }
+            if (position == 2) {
+                holder.mTimelineView.setMarker(getResources().getDrawable(R.drawable.ic_menu_camera));
+            }
         }
 
         @Override
