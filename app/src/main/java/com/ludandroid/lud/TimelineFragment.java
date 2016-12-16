@@ -58,9 +58,11 @@ public class TimelineFragment extends Fragment {
 
         public TimelineRecyclerViewAdapter()
         {
-            stringArrayList.add("ASDF");
-            stringArrayList.add("GHJKL");
-            stringArrayList.add("HELLO SAYANG");
+            for (int i=0; i<1000; i++) {
+                stringArrayList.add("ASDF");
+                stringArrayList.add("GHJKL");
+                stringArrayList.add("HELLO SAYANG");
+            }
         }
 
         @Override
@@ -75,8 +77,11 @@ public class TimelineFragment extends Fragment {
             if (position == 1) {
                 holder.mTimelineView.setMarker(getResources().getDrawable(R.drawable.ic_menu_gallery));
             }
-            if (position == 2) {
+            else if (position == 2) {
                 holder.mTimelineView.setMarker(getResources().getDrawable(R.drawable.ic_menu_camera));
+            }
+            else {
+                holder.mTimelineView.setMarker(getResources().getDrawable(R.drawable.ic_menu_share));
             }
         }
 
