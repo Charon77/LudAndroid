@@ -20,11 +20,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FragmentManager fm = getSupportFragmentManager();
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +48,11 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        fm.beginTransaction().replace(R.id.main_fragmentContainer,new HomeFragment()).addToBackStack(null).commit();
         navigationView.getMenu().getItem(0).setChecked(true);
+        fm.beginTransaction().replace(R.id.main_fragmentContainer,new HomeFragment()).addToBackStack(null).commit();
 
     }
 
@@ -73,25 +75,60 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             fm.beginTransaction().replace(R.id.main_fragmentContainer,new HomeFragment()).commit();
         } else if (id == R.id.nav_notification) {
-
+            Toast.makeText(this,"Not Implemented", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_closefriend) {
-
+            Toast.makeText(this,"Not Implemented", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_fans) {
-
+            Toast.makeText(this,"Not Implemented", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_bookmarks) {
-
+            Toast.makeText(this,"Not Implemented", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_recentview) {
-
+            Toast.makeText(this,"Not Implemented", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_setting) {
-
+            Toast.makeText(this,"Not Implemented", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_about) {
-
+            Toast.makeText(this,"Not Implemented", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_signout) {
-
+            Toast.makeText(this,"Not Implemented", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void UpdateNavDrawerSelectedItem(int n){
+        switch (n){
+            case 0 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case 1 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case 2 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case 3 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case 4 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case 5 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case 6 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case 7 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case 8 :
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            default:
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+        }
     }
 }

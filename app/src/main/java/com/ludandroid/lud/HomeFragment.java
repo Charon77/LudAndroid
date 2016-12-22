@@ -1,5 +1,6 @@
 package com.ludandroid.lud;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 public class HomeFragment extends Fragment {
@@ -51,6 +55,33 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+        //Set Bottom Toolbar OnClickListener
+        ImageButton bottomButton1 = (ImageButton) v.findViewById(R.id.toolbar_bottom_button1);
+        ImageButton bottomButton2 = (ImageButton) v.findViewById(R.id.toolbar_bottom_button2);
+        ImageButton bottomButton3 = (ImageButton) v.findViewById(R.id.toolbar_bottom_button3);
+
+        bottomButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Not Implemented",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bottomButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Not Implemented",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bottomButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Not Implemented",Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         // Inflate the layout for this fragment
         return v;
