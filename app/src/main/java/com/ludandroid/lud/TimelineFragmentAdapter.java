@@ -14,11 +14,23 @@ import com.vipul.hp_hp.timelineview.TimelineView;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by richi on 12/21/2016.
  */
 public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragmentAdapter.ViewHolder> {
-    private String[] mDataset;
+    private ITimelineData mDataset;
+
+    // Provides Interface for filling in data to the timeline
+    // TODO: make method for getting detail for content and contentInner
+    public interface ITimelineData {
+        String getProfileName(int i);
+        String getTimeStamp(int i);
+
+        int size();
+    }
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -41,8 +53,9 @@ public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragme
         }
     }
 
+
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TimelineFragmentAdapter(String[] myDataset) {
+    public TimelineFragmentAdapter(ITimelineData myDataset) {
         mDataset = myDataset;
     }
 
@@ -68,9 +81,13 @@ public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragme
         // - replace the contents of the view with that element
         //holder.mTextView.setText(mDataset[position]);
 
+        holder.mProfName.setText(mDataset.getProfileName(position));
+        holder.mTimeStamp.setText(mDataset.getTimeStamp(position));
+
+
         //TODO : Set Adapter for R.id.card_timeline_recyclerView here
         holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(holder.context));
-        holder.mRecyclerView.setAdapter(new TimelineFragmentContentAdapter(mDataset));
+        holder.mRecyclerView.setAdapter(new TimelineFragmentContentAdapter(new String[]{"1","2","3","4"}));
 
     }
 
@@ -82,6 +99,6 @@ public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragme
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }

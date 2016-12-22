@@ -9,12 +9,59 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class TimelineFragment extends Fragment {
 
     String[] dataset = {"1","2","3"}; //TODO : Insert data here
 
     public TimelineFragment() {
         // Required empty public constructor
+    }
+
+
+    // Pretends this class loads from some webserver
+    class O implements TimelineFragmentAdapter.ITimelineData
+    {
+        JSONArray o = new JSONArray();
+
+        public O()
+        {
+            try {
+                o.put(new JSONObject()
+                        .put("profileName", "Budi")
+                        .put("timestamp", "123")
+                );
+
+                o.put(new JSONObject()
+                        .put("profileName", "Joyo")
+                        .put("timestamp", "789")
+                );
+            }
+            catch (Exception e){e.printStackTrace();}
+
+        }
+
+        @Override
+        public String getProfileName(int i) {
+            try {
+                return o.getJSONObject(i).getString("profileName");
+            } catch (JSONException e) {e.printStackTrace(); return "ERROR";}
+        }
+
+        @Override
+        public String getTimeStamp(int i) {
+            try {
+                return o.getJSONObject(i).getString("timestamp");
+            } catch (JSONException e) {e.printStackTrace(); return "ERROR";}
+        }
+
+        @Override
+        public int size() {
+            return o.length();
+        }
     }
 
 
@@ -26,7 +73,7 @@ public class TimelineFragment extends Fragment {
 
         RecyclerView mRecyclerView = (RecyclerView) v.findViewById(R.id.timeline_recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new TimelineFragmentAdapter(dataset));
+        mRecyclerView.setAdapter(new TimelineFragmentAdapter(new O()));
 
         return v;
     }
