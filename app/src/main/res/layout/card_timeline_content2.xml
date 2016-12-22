@@ -37,11 +37,6 @@
             android:text="[Content Placeholder]"
             />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/timeline_card_recyclerView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
     </LinearLayout>
 
 </LinearLayout>

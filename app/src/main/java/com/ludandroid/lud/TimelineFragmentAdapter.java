@@ -31,13 +31,6 @@ public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragme
         public RecyclerView mRecyclerView;
         public Context context;
 
-        /* NOTE:
-         * Use Baseclass View instead of CardView in order to
-         * be generic. Change made because I needed to have
-         * LinearLayout as the root element, as opposed
-         * to CardView.
-         */
-
         public ViewHolder(View v,Context c) {
             super(v);
             mProfName = (TextView) v.findViewById(R.id.timeline_card_profName);

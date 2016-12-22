@@ -1,5 +1,7 @@
 package com.ludandroid.lud;
 
+import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +17,11 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
 
     private String[] mDataset;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+
         public TimelineView mTimelineView;
+        public RecyclerView mRecyclerView;
+        public Context context;
 
         /* NOTE:
          * Use Baseclass View instead of CardView in order to
@@ -29,12 +30,14 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
          * to CardView.
          */
 
-        public ViewHolder(View v, int viewType) {
+        public ViewHolder(View v, int viewType, Context c) {
             super(v);
 
             // Init Timeline line
             mTimelineView = (TimelineView) v.findViewById(R.id.time_marker);
             mTimelineView.initLine(viewType);
+            mRecyclerView = (RecyclerView) v.findViewById(R.id.timeline_card_recyclerView2);
+            context = c;
         }
     }
 
@@ -47,7 +50,6 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
     @Override
     public TimelineFragmentContentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                                  int viewType) {
-        // create a new view
 
         /* NOTE:
          * Use View.inflate instead of LayoutInflater, so that the
@@ -58,7 +60,7 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
 
         // set the view's size, margins, paddings and layout parameters
 
-        ViewHolder vh = new ViewHolder(v, viewType);
+        ViewHolder vh = new ViewHolder(v, viewType, parent.getContext());
 
         return vh;
     }
@@ -70,7 +72,9 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
         // - replace the contents of the view with that element
         //holder.mTextView.setText(mDataset[position]);
 
-        //TODO : Insert data for content here
+        //TODO : Insert data for Outer content here
+        holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(holder.context));
+        holder.mRecyclerView.setAdapter(new TimelineFragmentContent2Adapter(mDataset));
 
     }
 
