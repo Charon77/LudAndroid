@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.vipul.hp_hp.timelineview.TimelineView;
 
 class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragmentAdapter.ViewHolder> implements IDatasetChangeListener {
-    private ITimelineDataset mDataset;
+    private INotifierTimelineDataset mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -37,8 +37,10 @@ class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragmentAdapt
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    TimelineFragmentAdapter(ITimelineDataset myDataset) {
-        mDataset = myDataset;
+    TimelineFragmentAdapter() {
+        mDataset = new TestNotifierTimelineAsyncTask();
+        mDataset.setDatasetChangeListener(this);
+        mDataset.loadData();
     }
 
     // Create new views (invoked by the layout manager)

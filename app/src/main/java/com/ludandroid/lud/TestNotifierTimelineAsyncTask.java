@@ -8,16 +8,13 @@ import org.json.JSONObject;
 
 // Pretends this class loads from some webserver
 // TODO: Real web access
-class TestTimelineAsyncTask extends AsyncTask<Void, Void, Void> implements ITimelineDataset
+class TestNotifierTimelineAsyncTask extends AsyncTask<Void, Void, Void> implements INotifierTimelineDataset
 {
     private IDatasetChangeListener datasetChangeListener;
     private JSONArray jsonDataFetchedFromWeb = new JSONArray();
 
-    void setDatasetChangeListener(IDatasetChangeListener myDatasetChangeListener) {
-        datasetChangeListener = myDatasetChangeListener;
-    }
 
-    //region ITimelineDataset
+    //region INotifierTimelineDataset
     @Override
     public String getProfileName(int i) {
         try {
@@ -38,6 +35,18 @@ class TestTimelineAsyncTask extends AsyncTask<Void, Void, Void> implements ITime
     }
     //endregion
 
+    //region INotifier
+    @Override
+    public void setDatasetChangeListener(IDatasetChangeListener myDatasetChangeListener) {
+        datasetChangeListener = myDatasetChangeListener;
+    }
+
+    @Override
+    public void loadData() {
+        execute();
+    }
+    //endregion
+
     //region AsyncTask Extension
     @Override
     protected Void doInBackground(Void... voids) {
@@ -48,7 +57,6 @@ class TestTimelineAsyncTask extends AsyncTask<Void, Void, Void> implements ITime
                         .put("profileName", "Budi")
                         .put("timestamp", "123")
                 );
-
                 jsonDataFetchedFromWeb.put(new JSONObject()
                         .put("profileName", "Joyo")
                         .put("timestamp", "789")

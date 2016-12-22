@@ -28,20 +28,11 @@ public class TimelineFragment extends Fragment {
         RecyclerView mRecyclerView = (RecyclerView) v.findViewById(R.id.timeline_recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        // Creates Asynctask for loading
-        TestTimelineAsyncTask testTimelineAsyncTask = new TestTimelineAsyncTask();
-
         // Sets Adapter to the asynctask
-        TimelineFragmentAdapter timelineFragmentAdapter = new TimelineFragmentAdapter(testTimelineAsyncTask);
-
-        // Tells Asynctask how to refresh
-        testTimelineAsyncTask.setDatasetChangeListener(timelineFragmentAdapter);
+        TimelineFragmentAdapter timelineFragmentAdapter = new TimelineFragmentAdapter();
 
         // Set adapter to the recyclerview
         mRecyclerView.setAdapter(timelineFragmentAdapter);
-
-        // Loads Asynctask
-        testTimelineAsyncTask.execute();
 
         return v;
     }
