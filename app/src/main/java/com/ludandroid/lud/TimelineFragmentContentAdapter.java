@@ -5,8 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.vipul.hp_hp.timelineview.TimelineView;
 
@@ -36,7 +34,7 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
             // Init Timeline line
             mTimelineView = (TimelineView) v.findViewById(R.id.time_marker);
             mTimelineView.initLine(viewType);
-            mRecyclerView = (RecyclerView) v.findViewById(R.id.timeline_card_recyclerView2);
+            mRecyclerView = (RecyclerView) v.findViewById(R.id.timeline_card_recyclerView_inner);
             context = c;
         }
     }
@@ -74,7 +72,7 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
 
         //TODO : Insert data for Outer content here
         holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(holder.context));
-        holder.mRecyclerView.setAdapter(new TimelineFragmentContent2Adapter(mDataset));
+        holder.mRecyclerView.setAdapter(new TimelineFragmentContentInnerAdapter(mDataset));
 
     }
 
