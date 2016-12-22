@@ -20,7 +20,8 @@
             app:layout_constraintVertical_bias="1.0"
             app:line="@color/colorPrimary"
             app:line_size="2dp"
-            app:marker_size="25dp" />
+            app:marker_size="25dp"
+            app:markerInCenter="false"/>
 
     </LinearLayout>
 
@@ -28,7 +29,9 @@
         android:layout_width="0dp"
         android:layout_weight="0.8"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin">
 
         <TextView
             android:id="@+id/timeline_card_content"
