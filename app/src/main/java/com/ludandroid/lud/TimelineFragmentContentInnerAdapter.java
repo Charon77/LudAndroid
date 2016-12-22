@@ -1,5 +1,7 @@
 package com.ludandroid.lud;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +20,14 @@ public class TimelineFragmentContentInnerAdapter extends RecyclerView.Adapter<Ti
 
         public TimelineView mTimelineView;
         public TextView mContent;
-
+        public Context mContext;
 
         public ViewHolder(View v, int viewType) {
             super(v);
             mTimelineView = (TimelineView) v.findViewById(R.id.time_marker);
             mTimelineView.initLine(viewType);
             mContent = (TextView) v.findViewById(R.id.timeline_card_content);
-
+            mContext = v.getContext();
         }
 
     }
@@ -61,6 +63,7 @@ public class TimelineFragmentContentInnerAdapter extends RecyclerView.Adapter<Ti
             //holder.mTextView.setText(mDataset[position]);
 
             //TODO : Insert data for Inner content here
+            holder.mTimelineView.setMarker(ContextCompat.getDrawable(holder.mContext, R.drawable.r_20));
             holder.mContent.setText("Test");
         }
 

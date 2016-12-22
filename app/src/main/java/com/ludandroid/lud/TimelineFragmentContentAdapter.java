@@ -1,6 +1,7 @@
 package com.ludandroid.lud;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,7 +20,7 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
 
         public TimelineView mTimelineView;
         public RecyclerView mRecyclerView;
-        public Context context;
+        public Context mContext;
 
         /* NOTE:
          * Use Baseclass View instead of CardView in order to
@@ -28,14 +29,14 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
          * to CardView.
          */
 
-        public ViewHolder(View v, int viewType, Context c) {
+        public ViewHolder(View v, int viewType) {
             super(v);
 
             // Init Timeline line
             mTimelineView = (TimelineView) v.findViewById(R.id.time_marker);
             mTimelineView.initLine(viewType);
             mRecyclerView = (RecyclerView) v.findViewById(R.id.timeline_card_recyclerView_inner);
-            context = c;
+            mContext = v.getContext();
         }
     }
 
@@ -58,7 +59,7 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
 
         // set the view's size, margins, paddings and layout parameters
 
-        ViewHolder vh = new ViewHolder(v, viewType, parent.getContext());
+        ViewHolder vh = new ViewHolder(v, viewType);
 
         return vh;
     }
@@ -70,8 +71,10 @@ public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<Timelin
         // - replace the contents of the view with that element
         //holder.mTextView.setText(mDataset[position]);
 
+        holder.mTimelineView.setMarker(ContextCompat.getDrawable(holder.mContext,R.drawable.r_59));
+
         //TODO : Insert data for Outer content here
-        holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(holder.context));
+        holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(holder.mContext));
         holder.mRecyclerView.setAdapter(new TimelineFragmentContentInnerAdapter(mDataset));
 
     }
