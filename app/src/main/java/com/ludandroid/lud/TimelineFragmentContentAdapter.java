@@ -1,10 +1,6 @@
 package com.ludandroid.lud;
 
-import android.content.Context;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,12 +8,11 @@ import android.widget.TextView;
 
 import com.vipul.hp_hp.timelineview.TimelineView;
 
-import org.w3c.dom.Text;
-
 /**
- * Created by richi on 12/21/2016.
+ * Created by richi on 12/22/2016.
  */
-public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragmentAdapter.ViewHolder> {
+public class TimelineFragmentContentAdapter extends RecyclerView.Adapter<TimelineFragmentContentAdapter.ViewHolder> {
+
     private String[] mDataset;
 
     // Provide a reference to the views for each data item
@@ -25,11 +20,7 @@ public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragme
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public ImageView mProfPic;
-        public TextView mProfName;
-        public TextView mTimeStamp;
-        public RecyclerView mRecyclerView;
-        public Context context;
+        public TimelineView mTimelineView;
 
         /* NOTE:
          * Use Baseclass View instead of CardView in order to
@@ -38,32 +29,36 @@ public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragme
          * to CardView.
          */
 
-        public ViewHolder(View v,Context c) {
+        public ViewHolder(View v, int viewType) {
             super(v);
-            mProfName = (TextView) v.findViewById(R.id.timeline_card_profName);
-            mProfPic = (ImageView) v.findViewById(R.id.timeline_card_profPic);
-            mTimeStamp = (TextView) v.findViewById(R.id.timeline_card_timestamp);
-            mRecyclerView = (RecyclerView) v.findViewById(R.id.timeline_card_recyclerView);
-            context = c;
+
+            // Init Timeline line
+            mTimelineView = (TimelineView) v.findViewById(R.id.time_marker);
+            mTimelineView.initLine(viewType);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TimelineFragmentAdapter(String[] myDataset) {
+    public TimelineFragmentContentAdapter(String[] myDataset) {
         mDataset = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public TimelineFragmentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public TimelineFragmentContentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                 int viewType) {
         // create a new view
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_timeline, parent, false);
+        /* NOTE:
+         * Use View.inflate instead of LayoutInflater, so that the
+         * height of the timeline can be derived properly, otherwise it will
+         * just fill the whole screen.
+         */
+        View v = View.inflate(parent.getContext(), R.layout.card_timeline_content, null);
 
         // set the view's size, margins, paddings and layout parameters
 
-        ViewHolder vh = new ViewHolder(v,parent.getContext());
+        ViewHolder vh = new ViewHolder(v, viewType);
 
         return vh;
     }
@@ -75,9 +70,7 @@ public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragme
         // - replace the contents of the view with that element
         //holder.mTextView.setText(mDataset[position]);
 
-        //TODO : Set Adapter for R.id.card_timeline_recyclerView here
-        holder.mRecyclerView.setLayoutManager(new LinearLayoutManager(holder.context));
-        holder.mRecyclerView.setAdapter(new TimelineFragmentContentAdapter(mDataset));
+        //TODO : Insert data for content here
 
     }
 
@@ -91,4 +84,5 @@ public class TimelineFragmentAdapter extends RecyclerView.Adapter<TimelineFragme
     public int getItemCount() {
         return mDataset.length;
     }
+
 }

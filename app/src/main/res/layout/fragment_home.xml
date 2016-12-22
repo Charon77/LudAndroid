@@ -16,6 +16,7 @@
             android:id="@+id/toolbar_tabs"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:tabBackground="@drawable/tab_indicator_color"
             app:tabMode="fixed"/>
 
     </android.support.design.widget.AppBarLayout>

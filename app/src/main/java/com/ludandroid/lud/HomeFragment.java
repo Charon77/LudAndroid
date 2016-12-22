@@ -1,10 +1,9 @@
 package com.ludandroid.lud;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +26,13 @@ public class HomeFragment extends Fragment {
 
         TabLayout tabLayout = (TabLayout) v.findViewById(R.id.toolbar_tabs);
 
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.r_44a).setText("Home"));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.r_46).setText("Profile"));
+        tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.r_44a));
+        tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.r_46));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabTextColors(ContextCompat.getColorStateList(this.getContext(), R.color.tab_text_color));
 
         final ViewPager viewPager = (ViewPager) v.findViewById(R.id.home_viewPager);
-        final ViewPagerAdapter adapter = new ViewPagerAdapter (getFragmentManager(), tabLayout.getTabCount());
+        final HomePagerAdapter adapter = new HomePagerAdapter(getFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

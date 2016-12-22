@@ -1,36 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="@dimen/activity_vertical_margin"
+    >
 
-    <com.vipul.hp_hp.timelineview.TimelineView
-        android:id="@+id/time_marker"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:line="@color/colorPrimary"
-        app:line_size="2dp"
-        app:marker_size="25dp" />
-
-    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/timeline_card"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/timeline_card_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+            <ImageView
+                android:id="@+id/timeline_card_profPic"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:padding="8dp"
+                android:src="@drawable/r_52"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/timeline_card_profName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="[Profile Name]"
+                    android:textSize="18sp"
+                    android:padding="6dp"/>
+
+                <TextView
+                    android:id="@+id/timeline_card_timestamp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="[TimeStamp]"
+                    android:textSize="14sp"
+                    android:paddingStart="6dp"
+                    android:paddingBottom="6dp"
+                    android:paddingEnd="6dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+<!-- Two kind of approach here, Inflate layout to listView, or programatically
+try to create linear layout, which is risky since TimelineView is not a default widget -->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/timeline_card_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

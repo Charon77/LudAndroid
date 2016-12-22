@@ -3,4 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ludandroid.lud.TimelineFragment"
-    android:id="@+id/timeline_recyclerView"/>
+    android:id="@+id/timeline_recyclerView"
+    />
